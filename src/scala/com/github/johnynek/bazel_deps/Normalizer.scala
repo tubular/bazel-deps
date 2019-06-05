@@ -87,7 +87,7 @@ object Normalizer {
         val rootVersion = dups.iterator.find { v =>
           roots.contains(MavenCoordinate(node, v))
         }
-        if (rootVersion.isEmpty) {
+        if (rootVersion.isEmpty && !node.group.asString.startsWith("org.scala-lang")) {
           logger.error(s"Please, resolve versions conflicts for ${node.asString}")
           items
             .filter(_._1.isDefined)
